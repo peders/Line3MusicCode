@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Line3MusicCode.Mvc
 {
-    public class ViewHelpers
+    public static class ViewHelpers
     {
         public static string ControllerName(this ViewContext source)
         {
@@ -23,5 +18,17 @@ namespace Line3MusicCode.Mvc
             if (String.IsNullOrWhiteSpace(name)) return null;
             return name;
         }
+
+        public static bool IsForController(this ViewContext context, string name)
+        {
+            return context.ControllerName().Equals(name, StringComparison.InvariantCultureIgnoreCase);
+        }
+
+        public static bool IsForAction(this ViewContext context, string name)
+        {
+            return context.ActionName().Equals(name, StringComparison.InvariantCultureIgnoreCase);
+        }
+
     }
+
 }
